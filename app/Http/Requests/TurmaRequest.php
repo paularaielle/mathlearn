@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class TurmaRequest extends FormRequest
 {
@@ -14,8 +18,8 @@ class TurmaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required',
-            'turno' => 'required', // 1, 2, 3
+            'nome' => 'required|min:3',
+            'turno' => 'required|integer|max:3', // 1, 2, 3
         ];
     }
 }

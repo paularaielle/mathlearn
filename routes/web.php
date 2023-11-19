@@ -2,17 +2,29 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TurmaController;
+use App\Http\Controllers\ProfessorController;
+// use App\Http\Controllers\AlunoController;
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'authenticate'])->name('authenticate');
+
+Route::middleware(['auth'])->group(function () {
+
+    // Dashboard modulado
+    Route::get('dashboard', [DashboardController::class, 'home'])->name('dashboard');
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+    // Administrador
+    Route::resource('turma', TurmaController::class);
+    Route::resource('professor', ProfessorController::class);
+    // Route::resource('aluno', AlunoController::class);
+
+    // Professor
+
+    // Aluno
 });
+

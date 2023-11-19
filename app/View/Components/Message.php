@@ -1,20 +1,17 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Input extends Component
+class Message extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public string $type,
-        public string $name,
-    )
+    public function __construct()
     {
         //
     }
@@ -24,6 +21,6 @@ class Input extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.forms.input');
+        return view('components.message');
     }
 }
