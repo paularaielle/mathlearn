@@ -6,7 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\ProfessorController;
-// use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\OperacaoController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -21,7 +22,8 @@ Route::middleware(['auth'])->group(function () {
     // Administrador
     Route::resource('turma', TurmaController::class);
     Route::resource('professor', ProfessorController::class);
-    // Route::resource('aluno', AlunoController::class);
+    Route::resource('aluno', AlunoController::class);
+    Route::resource('operacao', OperacaoController::class);
 
     // Professor
 

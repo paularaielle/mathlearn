@@ -29,3 +29,10 @@ body{
 .form-control {
     border-left: none;
 }
+
+.bg-navbar {
+    background-image: url('/img/mathlearn/bg-navbar.png');
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: center;
+}

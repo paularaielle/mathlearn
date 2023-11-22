@@ -14,13 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Criando administrador
         User::factory()->create([
             'nome' => 'Pedagogo',
             'email' => 'admin@admin.com',
             'nickname' => 'pedagogo',
             'perfil' => 3,
         ]);
-        Turma::factory()->count(15)->create();
-        User::factory()->count(30)->create();
+
+        Turma::factory()->count(10)->create();
+
+        $this->call([
+            OperacaoSeeder::class,
+            AlunoSeeder::class,
+            ProfessorSeeder::class,
+        ]);
     }
 }

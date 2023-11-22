@@ -21,15 +21,22 @@ class ProfessorController extends BaseController
      */
     public function create()
     {
-        //
+        return view($this->create)->with('model', new Professor);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProfessorRequest $request)
     {
-        //
+        if (Professor::create($request->all())) {
+            $request->session()->flash('success', 'Registro criado');
+
+            return $this->redirectIndex();
+        }
+        $request->session()->flash('danger', 'Falha ao criar registro!');
+
+        return back();
     }
 
     /**
@@ -37,7 +44,9 @@ class ProfessorController extends BaseController
      */
     public function show(string $id)
     {
-        //
+        $model = Professor::find($id);
+
+        return view($this->show)->with('model', $model);
     }
 
     /**
@@ -45,15 +54,26 @@ class ProfessorController extends BaseController
      */
     public function edit(string $id)
     {
-        //
+        $model = Professor::find($id);
+
+        return view($this->edit)->with('model', $model);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProfessorRequest $request, string $id)
     {
-        //
+        $model = Professor::find($id);
+
+        if ($model->update($request->all())) {
+            $request->session()->flash('success', 'Registro atualizado');
+
+            return $this->redirectIndex();
+        }
+        $request->session()->flash('danger', 'Falha ao criar registro!');
+
+        return back();
     }
 
     /**
@@ -61,6 +81,13 @@ class ProfessorController extends BaseController
      */
     public function destroy(string $id)
     {
-        //
+        if (Professor::find($id)->delete()) {
+            request()->session()->flash('success', 'Registro excluído');
+
+            return $this->redirectIndex();
+        }
+        request()->session()->flash('danger', 'Falha ao excluir!');
+
+        return back();
     }
 }

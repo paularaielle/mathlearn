@@ -7,7 +7,9 @@
                     <i class="fa-solid fa-chart-line"></i>
                     Dashboard
                 </h2>
-                {{-- De acordo com o perfil do usuário aparece um dashboard diferente --}}
+
+                @include('dashboard.administrador')
+
             </div>
         </div>
     </div>

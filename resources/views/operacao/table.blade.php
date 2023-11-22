@@ -1,8 +1,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">Nome da turma</th>
-            <th scope="col">Turno</th>
+            <th scope="col">Nome da operação</th>
+            <th scope="col">Simbolo</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -10,7 +10,7 @@
         @foreach ($models as $m)
             <tr>
                 <td scope="row">{{ $m->nome }}</td>
-                <td>{{ $m->turno }}</td>
+                <td>{{ $m->simbolo }}</td>
                 <td class="col-3">
                     <x-forms.actions id="{{ $m->id }}" router="{{ $router }}"/>
                 </td>

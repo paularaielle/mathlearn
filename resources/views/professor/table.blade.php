@@ -2,6 +2,8 @@
     <thead>
         <tr>
             <th scope="col">Nome do professor</th>
+            <th scope="col">Nickname</th>
+            <th scope="col">Email</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -9,7 +11,11 @@
         @foreach ($models as $m)
             <tr>
                 <td scope="row">{{ $m->nome }}</td>
-                <td>@mdo</td>
+                <td scope="row">{{ $m->nickname }}</td>
+                <td scope="row">{{ $m->email }}</td>
+                <td>
+                    <x-forms.actions id="{{ $m->id }}" router="{{ $router }}"/>
+                </td>
             </tr>
         @endforeach
     </tbody>

@@ -27,6 +27,7 @@
     </head>
     <body>
         @include('layouts.partials.header')
+        @include('layouts.partials.menu')
         <main>
             {{ $slot }}
         </main>

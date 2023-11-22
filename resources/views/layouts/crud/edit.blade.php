@@ -6,7 +6,7 @@
 
                     <div class="card-header">
                         <i class="fa-solid fa-plus"></i>
-                        Novo registro
+                        Editar registro
                         <a href="{{ route($router . '.index') }}" class="btn btn-dark float-end text-with">
                             <i class="fa-solid fa-arrow-left"></i>
                             Voltar

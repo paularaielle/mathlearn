@@ -6,7 +6,7 @@
 
                     <div class="card-header">
                         <i class="fa-solid fa-plus"></i>
-                        Novo registro
+                        Detalhes do registro
                         <a href="{{ route($router . '.index') }}" class="btn btn-dark float-end text-with">
                             <i class="fa-solid fa-arrow-left"></i>
                             Voltar
@@ -14,9 +14,9 @@
                     </div>
 
                     <div class="card-body">
-                        @include($path . '.form', [
+                        {{-- @include($path . '.form', [
                             'action' => route($router.'.store')
-                        ])
+                        ]) --}}
                     </div>
 
                 </div>
