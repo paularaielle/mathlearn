@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('nome');
             $table->integer('turno');
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
     }

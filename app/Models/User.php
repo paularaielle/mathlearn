@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-// use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Scopes\AtivoScope;
 
 class User extends Authenticatable
-// implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
 
@@ -21,15 +20,12 @@ class User extends Authenticatable
         'perfil', // 1 = Aluno, 2 = Professor, 3 = Administrador
         'email',
         'password',
+        // novos campos
+        'avatar',
+        'pontuacao',
+        'foto',
+        'ativo',
     ];
-
-    // public function getJWTIdentifier(){
-    //     return $this->getKey();
-    // }
-
-    // public function getJWTCustomClaims(){
-    //     return [];
-    // }
 
     protected $hidden = [
         'password',
@@ -41,8 +37,35 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public static $perfis = [
+        1 => 'Aluno',
+        2 => 'Professor',
+        3 => 'Administrador',
+    ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new AtivoScope);
+    }
+
     public function isAdmin(): bool
     {
         return $this->perfil === 3;
+    }
+
+    public function isProfessor(): bool
+    {
+        return $this->perfil === 2;
+    }
+
+    public function isAluno(): bool
+    {
+        return $this->perfil === 1;
+    }
+
+    public function strPerfil() {
+        return isset(static::$perfis[$this->perfil])
+            ? static::$perfis[$this->perfil]
+            : 'Não definido';
     }
 }

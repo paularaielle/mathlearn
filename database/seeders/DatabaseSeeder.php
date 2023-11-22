@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             OperacaoSeeder::class,
             AlunoSeeder::class,
             ProfessorSeeder::class,
+            TabuadaSeeder::class,
         ]);
     }
 }

@@ -5,10 +5,8 @@
             <div class="col-12">
                 <h2>
                     <i class="fa-solid fa-chart-line"></i>
-                    Dashboard
+                    Bem vindo {{ $user->nome }}
                 </h2>
-
-                @include('dashboard.administrador')
 
             </div>
         </div>

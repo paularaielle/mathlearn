@@ -8,6 +8,8 @@ use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\OperacaoController;
+use App\Http\Controllers\TabuadaController;
+use App\Http\Controllers\PontuacaoController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -28,5 +30,8 @@ Route::middleware(['auth'])->group(function () {
     // Professor
 
     // Aluno
+    Route::get('tabuada/{id}', [TabuadaController::class, 'index'])->name('tabuada.index');
+    Route::get('tabuada/{operacaoId}/pontuacao/{tabuadaId}', [PontuacaoController::class, 'create'])
+        ->name('pontuacao.create');
 });
 

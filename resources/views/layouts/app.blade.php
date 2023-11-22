@@ -24,6 +24,7 @@
 
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
         @stack('style')
+        {{-- @livewireStyles --}}
     </head>
     <body>
         @include('layouts.partials.header')
@@ -36,5 +37,7 @@
         {{-- <script src="js/progressbar.min.js"></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        @stack('script')
+        {{-- @livewireScripts --}}
     </body>
 </html>

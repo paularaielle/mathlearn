@@ -13,7 +13,7 @@
                         <img src="{{ asset('img/mathlearn/LOGO.png') }}" width="445px" />
                     </div>
 
-                    <x-forms.input type="email" placeholder="Email/Nickname" name="email" icon="fa-solid fa-user"/>
+                    <x-forms.input type="text" placeholder="Email/Nickname" name="email" icon="fa-solid fa-user"/>
 
                     <x-forms.input type="password" placeholder="Senha" name="password" icon="fa-solid fa-lock"/>
 

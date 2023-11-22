@@ -2,17 +2,11 @@
     <div class="container-fluid">
 
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/mathlearn/LOGO.png') }}" width="150px" />
+            <img src="{{ asset('img/mathlearn/LOGO.png') }}" width="200px" />
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-        </div>
-
-        <form class="d-flex" role="search">
-        </form>
-
         <button
-            class="btn btn-link btn-lg text-light border border-white"
+            class="btn btn-link btn-lg text-light border border-3 border-white"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasExample"
