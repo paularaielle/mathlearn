@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('operacao_id');
             $table->string('tabuada_id');
             $table->string('aluno_id');
-            $table->integer('resultado')->nullable();
+            $table->integer('resposta')->nullable();
             $table->boolean('acerto')->default(false);
             $table->string('tempo')->nullable();
 

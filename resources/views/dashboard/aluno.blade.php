@@ -18,8 +18,14 @@
 
                     <div class="col-sm-12 col-lg-6">
                         @foreach ($operacoes as $m)
-                            <a href="{{ route('tabuada.index', $m->id) }}" class="btn btn-outline-light btn-lg border border-5 m-2 px-4 rounded-pill border-white">
-                                {{ $m->nome }} {{ $m->simbolo }}
+                            <a
+                                href="{{ route('tabuada.index', $m->id) }}"
+                                class="btn btn-outline-light btn-lg btn-operacao"
+                            >
+                                {{ $m->nome }}
+                                <span style="color: #79c9fa;">
+                                    {!! $m->imagem !!}
+                                </span>
                             </a>
                         @endforeach
                     </div>

@@ -16,7 +16,7 @@ class AlunoResposta extends Model
         'operacao_id',
         'tabuada_id',
         'aluno_id', // user_id -> Aluno
-        'resultado',
+        'resposta',
         'acerto', // true OR false (default: false)
         'tempo',
         'formular',

@@ -2,23 +2,26 @@
 
 namespace App\Livewire;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\AlunoResposta;
 
 class TabuadaFormPost extends Component
 {
+    use LivewireAlert;
+
     public $m = 0;
     public $h = 0;
     public $s = 0;
-    public $tempo;
     // Resposta vai guardar todos os dados antes de salvar
+    public $enableSave = false;
     public $respostas = [];
-    public $tabuada;
-    public $operacao;
-    public $questoes = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+    public $erros = [];
+    public $acertos = [];
     public $operador = 1;
+    public $questao = 1;
     // Form
-    public $tabuada_id, $operacao_id, $resposta;
+    public $tabuada, $operacao, $resposta, $tempo;
 
     public function mount($tabuada, $operacao)
     {
@@ -27,7 +30,6 @@ class TabuadaFormPost extends Component
     }
 
     public function cronStart () {
-
         if ($this->h == 23 && $this->m == 59) {
             $this->h = 0;
             $this->m = 0;
@@ -57,46 +59,94 @@ class TabuadaFormPost extends Component
 
     public function responder()
     {
+        $acertou = $this->acertou($this->operador);
         $user = auth()->user();
 
         $this->respostas[$this->operador] = [
-            'operacao_id' => $this->operacao_id,
-            'tabuada_id' => $this->tabuada_id,
-            'aluno_id' => $user->id,
-            'resultado' => $this->resposta,
-            'acerto' => $this->operacao_id,
+            'operacao_id' => $this->operacao->id,
+            'tabuada_id' => $this->tabuada->id,
+            'aluno_id' => "$user->id",
+            'resposta' => $this->resposta,
+            'acerto' => $acertou,
             'tempo' => $this->tempo,
-            'formular' => "teste",
+            'formular' => $this->setFormula($this->operador),
             'operador' => $this->operador,
         ];
 
-        $this->operador = $this->operador + 1;
-
-        if ( $this->operador == 5) {
-            dd($this->respostas);
+        if ($acertou) {
+            $this->alert('success', 'Parabéns, você acertou', [
+                'position' => 'top',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+            ]);
+        } else {
+            $this->alert('error', motivacionaisErro(), [
+                'position' => 'top',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+            ]);
         }
+
+        $this->reCalcular();
     }
 
-    // Dados a serem salvos
-    // [
-    //     'operacao_id',
-    //     'tabuada_id',
-    //     'aluno_id', // user_id -> Aluno
-    //     'resultado',
-    //     'acerto', // true OR false (default: false)
-    //     'tempo',
-    //     'formular',
-    //     'operador'
-    // ];
+    // apenas bloqueia o submit do formulário
+    public function saveBlockDefault(){}
+
+    public function setFormula($operador)
+    {
+        $numero = $this->tabuada->numero;
+        $simbolo = $this->operacao->simbolo;
+
+        return "$operador $simbolo $numero = $this->resposta";
+    }
+
+    // testa se o Aluno acertou a resposta
+    public function acertou($operador)
+    {
+        $resultado = calc($operador, $this->tabuada->numero, $this->operacao->simbolo);
+
+        return $resultado == $this->resposta;
+    }
+
     public function save()
     {
-        // $post = Post::create([
-        //     'title' => $this->title
-        // ]);
+        foreach ($this->respostas as $resposta) {
+            AlunoResposta::create($resposta);
+        }
 
-        // return redirect()->to('/posts')
-        //      ->with('status', 'Post created!');
+        session()->flash('success', 'Parabéns, você terminou sua lição');
+
+        return $this->redirect('dashboard');
     }
+
+    /**
+     * Reseta e Recalcula variantes
+     */
+    public function reCalcular()
+    {
+        $this->h = 0;
+        $this->m = 0;
+        $this->s = 0;
+        $this->tempo = "0:00";
+        $this->resposta = null;
+
+        // Aumenta Operador
+        if ($this->operador <= 10) {
+            $this->operador = $this->operador + 1;
+            $this->questao = $this->questao + 1;
+        }
+
+        if (isset($this->respostas[10])) {
+            $this->operador = 10;
+            $this->questao = 10;
+        }
+
+        if (isset($this->respostas[10])) $this->enableSave = true;
+    }
+
     public function render()
     {
         return view('livewire.tabuada-form-post');
