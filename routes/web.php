@@ -17,8 +17,12 @@ Route::post('login', [LoginController::class, 'authenticate'])->name('authentica
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+
     // Dashboard modulado
     Route::get('dashboard', [DashboardController::class, 'home'])->name('dashboard');
+    Route::get('perfil', [LoginController::class, 'perfil'])->name('perfil');
+    Route::post('perfil', [LoginController::class, 'update'])->name('salvarPerfil');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
     // Administrador

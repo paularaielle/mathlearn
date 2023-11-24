@@ -119,7 +119,7 @@ class TabuadaFormPost extends Component
 
         session()->flash('success', 'Parabéns, você terminou sua lição');
 
-        return $this->redirect('dashboard');
+        return $this->redirect('/dashboard');
     }
 
     /**

@@ -7,16 +7,19 @@
                 <h2>
                     <i class="fa-solid fa-calculator"></i>
                     Tabuada
+
                 </h2>
 
-                {{-- <nav aria-label="breadcrumb">
+                <nav aria-label="breadcrumb float-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="{{ route('dashboard') }}">Operação ({{ $operacao->nome }})</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Escolha a tabuada
+                        </li>
                     </ol>
-                </nav> --}}
+                </nav>
 
                 <div class="row mt-5">
                     <div class="col-12">

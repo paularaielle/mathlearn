@@ -21,7 +21,7 @@
                 <div class="col-2">
                     {{ $operador }}
                 </div>
-                <div class="col-3">
+                <div class="col-3" style="color: #79c9fa;">
                     {!! $operacao->imagem !!}
                     {{-- <img
                         src="{{ asset($operacao->imagem) }}"
