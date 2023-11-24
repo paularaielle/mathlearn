@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'perfil' => 3,
         ]);
 
-        Turma::factory()->count(10)->create();
+        Turma::factory()->count(3)->create();
 
         $this->call([
             OperacaoSeeder::class,

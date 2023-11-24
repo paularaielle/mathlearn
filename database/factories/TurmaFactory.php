@@ -11,7 +11,7 @@ class TurmaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->numerify('turma-#####'),
+            'nome' => fake()->numerify('turma-###'),
             'turno' => fake()->numberBetween(1, 3),
         ];
     }

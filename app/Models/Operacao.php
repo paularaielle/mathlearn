@@ -16,5 +16,6 @@ class Operacao extends Model
         'nome',
         'simbolo', // 1, 2, 3
         'peso_ponto',
+        'imagem',
     ];
 }

@@ -19,5 +19,7 @@ class AlunoResposta extends Model
         'resultado',
         'acerto', // true OR false (default: false)
         'tempo',
+        'formular',
+        'operador'
     ];
 }

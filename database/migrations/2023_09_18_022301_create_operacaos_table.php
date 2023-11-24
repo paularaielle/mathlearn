@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('nome');
             $table->string('simbolo');
+            $table->string('imagem');
             $table->integer('peso_ponto')->nullable();
             $table->timestamps();
         });

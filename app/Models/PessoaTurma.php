@@ -12,7 +12,7 @@ class PessoaTurma extends Model
 
     protected $fillable = [
         'user_id',
-        'turma_id', // 1, 2, 3
+        'turma_id',
         'ativo',
     ];
 

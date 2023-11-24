@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('resultado')->nullable();
             $table->boolean('acerto')->default(false);
             $table->string('tempo')->nullable();
+
+            $table->string('formular')->nullable()->comment('Guarda o formula completa da questão');
+            $table->integer('operador')->nullable()->comment('Numero usado na operação de forma separada, auxilia no resultado');
             $table->timestamps();
         });
     }

@@ -36,3 +36,28 @@ body{
     /* background-attachment: fixed; */
     background-position: center;
 }
+
+.box-cron {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+.box-cron h2 {
+    font-size:  300%;
+    font-weight: bold;
+    text-align: center;
+}
+.box-calc {
+    text-align: center;
+    font-size:  350%;
+    border: .8rem #6666fb dashed;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 5rem;
+}
+
+.box-calc input{
+    background: transparent;
+    border: none;
+    border-bottom: 5px solid #fff;
+    width: 100%;
+}
