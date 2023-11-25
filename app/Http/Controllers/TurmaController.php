@@ -8,6 +8,7 @@ use App\Models\Turma;
 
 class TurmaController extends BaseController
 {
+    protected $title = 'Turmas';
     protected $path = 'turma';
     protected $router = 'turma';
 

@@ -3,6 +3,13 @@
         <x-message />
         <div class="row">
             <div class="col-12">
+                @if ($title)
+                    <h2 class="mb-3">
+                        {{-- <i class="fa-solid fa-house"></i> --}}
+                        {{ $title }}
+                    </h2>
+                @endif
+
                 <div class="card" data-bs-theme="dark">
                     <div class="card-header">
                         Listagem

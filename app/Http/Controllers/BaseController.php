@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    protected $title = '';
+
     protected $path = '';
 
     protected $router = '';
@@ -22,6 +24,7 @@ class BaseController extends Controller
     {
         view()->share('path', $this->path);
         view()->share('router', $this->router);
+        view()->share('title', $this->title);
     }
 
     protected function redirectIndex()

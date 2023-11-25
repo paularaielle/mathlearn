@@ -8,6 +8,7 @@ use App\Models\Operacao;
 
 class OperacaoController extends BaseController
 {
+    protected $title = 'Operações';
     protected $path = 'operacao';
     protected $router = 'operacao';
 

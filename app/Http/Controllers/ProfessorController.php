@@ -8,6 +8,7 @@ use App\Models\Professor;
 
 class ProfessorController extends BaseController
 {
+    protected $title = 'Professores';
     protected $path = 'professor';
     protected $router = 'professor';
 

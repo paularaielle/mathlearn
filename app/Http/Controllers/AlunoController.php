@@ -8,6 +8,7 @@ use App\Models\Aluno;
 
 class AlunoController extends BaseController
 {
+    protected $title = 'Aluno';
     protected $path = 'aluno';
     protected $router = 'aluno';
 
