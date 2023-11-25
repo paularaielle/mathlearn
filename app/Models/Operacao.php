@@ -17,5 +17,11 @@ class Operacao extends Model
         'simbolo', // 1, 2, 3
         'peso_ponto',
         'imagem',
+        'icon',
     ];
+
+    public function img(String $w = '80px')
+    {
+        return "<img src='$this->image' title='Operacao: $this->nome' width='$w' />";
+    }
 }

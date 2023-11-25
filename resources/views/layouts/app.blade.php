@@ -24,7 +24,7 @@
         <main>
             {{ $slot }}
         </main>
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script>
@@ -34,9 +34,8 @@
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
         </script>
         @stack('script')
-        @livewireScripts
-        @livewireChartsScripts
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <livewire:scripts />
         <x-livewire-alert::scripts />
+        @livewireChartsScripts
     </body>
 </html>

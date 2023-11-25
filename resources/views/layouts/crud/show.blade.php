@@ -14,9 +14,10 @@
                     </div>
 
                     <div class="card-body">
-                        {{-- @include($path . '.form', [
-                            'action' => route($router.'.store')
-                        ]) --}}
+                        @include($path . '.form', [
+                            'action' => '#',
+                            'disabled' => true,
+                        ])
                     </div>
 
                 </div>

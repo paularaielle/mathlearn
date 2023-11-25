@@ -66,9 +66,9 @@ body{
     background-color: #575f72;
     border: #a1c0cb 5px solid;
     border-radius: 50px;
-    padding: .5rem 2rem;
-    font-size: 200%;
-    margin: 5px 15px;
+    /* padding: .5rem 1rem; */
+    /* font-size: 100%; */
+    /* margin: 5px 15px; */
 }
 .btn-tabuada {
     width: 130px;

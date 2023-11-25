@@ -39,7 +39,7 @@
 
                 <li class="list-group-item list-group-item-light pt-2 pb-2">
                     <a class="nav-link" aria-current="page" href="{{ route('perfil') }}">
-                        <i class="fa-regular fa-address-card"></i>
+                        <i class="fa-regular fa-pen-to-square"></i>
                         Editar perfil
                     </a>
                 </li>
