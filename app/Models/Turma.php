@@ -31,4 +31,8 @@ class Turma extends Model
     {
         return $this->belongsToMany(Professor::class, 'pessoa_turmas', 'turma_id', 'user_id');
     }
+
+    public function delete() {
+        return false;
+    }
 }

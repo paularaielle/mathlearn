@@ -13,7 +13,7 @@ class Actions extends Component
      */
     public function __construct(
         public string $id,
-        public string $router,
+        public string $router
     )
     {
     }

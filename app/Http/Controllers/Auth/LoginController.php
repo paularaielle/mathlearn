@@ -64,13 +64,13 @@ class LoginController extends Controller
 
         $data = [
             'email' => $request->email,
-            'nicknname' => $request->nicknname,
+            'nickname' => $request->nickname,
         ] + $data;
 
         if ($model->update($data)) {
             $request->session()->flash('success', 'Registro atualizado');
 
-            return redirect()->intended('dashboard');
+            return redirect()->route('perfil', $model->id);
             // return $this->redirectIndex();
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');

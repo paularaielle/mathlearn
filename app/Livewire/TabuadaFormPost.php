@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use App\Models\AlunoResposta;
+use Illuminate\Support\Facades\DB;
 
 class TabuadaFormPost extends Component
 {
@@ -20,11 +21,13 @@ class TabuadaFormPost extends Component
     public $acertos = [];
     public $operador = 1;
     public $questao = 1;
+    public $user;
     // Form
     public $tabuada, $operacao, $resposta, $tempo;
 
     public function mount($tabuada, $operacao)
     {
+        $this->user = auth()->user();
         $this->tabuada = $tabuada;
         $this->operacao = $operacao;
     }
@@ -60,12 +63,11 @@ class TabuadaFormPost extends Component
     public function responder()
     {
         $acertou = $this->acertou($this->operador);
-        $user = auth()->user();
 
         $this->respostas[$this->operador] = [
             'operacao_id' => $this->operacao->id,
             'tabuada_id' => $this->tabuada->id,
-            'aluno_id' => "$user->id",
+            'aluno_id' => $this->user->id,
             'resposta' => $this->resposta,
             'acerto' => $acertou,
             'tempo' => $this->tempo,
@@ -113,11 +115,21 @@ class TabuadaFormPost extends Component
 
     public function save()
     {
+        DB::beginTransaction();
+
+        $pontuacao = $this->user->pontuacao;
         foreach ($this->respostas as $resposta) {
             AlunoResposta::create($resposta);
+            if ($resposta['acerto']) $pontuacao = $pontuacao + 5;
         }
 
-        session()->flash('success', 'Parabéns, você terminou sua lição');
+        if ($this->user->update([ 'pontuacao' => $pontuacao ])) {
+            DB::commit();
+            session()->flash('success', 'Parabéns, você terminou sua lição');
+        } else {
+            DB::rollBack();
+            session()->flash('danger', 'Opa... Algo deu errado ao enviar suas respostas!');
+        }
 
         return $this->redirect('/dashboard');
     }

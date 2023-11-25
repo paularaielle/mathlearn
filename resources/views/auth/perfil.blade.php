@@ -1,52 +1,18 @@
 <x-app-layout>
     <div class="container">
-                {{-- <div class="card shadow"> --}}
-
-                    {{-- <div class="card-header"> --}}
         <h2>
             <i class="fa-regular fa-pen-to-square"></i>
             Editar perfil: {{ $model->nome }}
         </h2>
-                        {{-- <a href="{{ route($router . '.index') }}" class="btn btn-dark float-end text-with">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Voltar
-                        </a> --}}
-                    {{-- </div> --}}
-
-                    {{-- <div class="card-body"> --}}
-                        {{-- <h2>Em construção</h2> --}}
-
 
         <form method="POST" action="{{ route('salvarPerfil') }}" class="needs-validation row" novalidate>
             @csrf
 
-            <div class="col-6">
-                <div class="row justify-content-md-center mt-5">
-                    <button
-                        class="border border-5 rounded-circle"
-                        style="overflow: hidden; width: 250px; height: 250px;">
-                        <img
-                            src="{{ asset('img/avatar/batman.png') }}"
-                            class="mx-auto"
-                            width="230px"
-                            title="Avatar: {{ $model->nome }}">
-                    </button>
-                </div>
-
-                <div class="row justify-content-md-center mt-5">
-                    @foreach ([1, 2,3,4,3,4,5,6,7,7] as $item)
-                        <button
-                            class="border border-5 rounded-circle m-2"
-                            style="overflow: hidden; width: 100px; height: 100px;">
-                            <img
-                                src="{{ asset('img/avatar/batman.png') }}"
-                                class="mx-auto"
-                                width="70px"
-                                title="Avatar: {{ $model->nome }}">
-                        </button>
-                    @endforeach
-                </div>
-            </div>
+            @if($model->isAluno())
+                @include('components.aluno.avatar')
+            @else
+                @include('components.aluno.avatar')
+            @endif
 
             <div class="col-6">
 

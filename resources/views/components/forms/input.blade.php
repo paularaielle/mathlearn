@@ -1,6 +1,7 @@
 @props(['disabled' => false])
 @props(['icon' => 'fa-solid fa-chevron-right'])
 @props(['label' => null])
+
 @php
     $invalid = '';
 @endphp
