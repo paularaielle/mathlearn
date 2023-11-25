@@ -13,4 +13,8 @@ class Tabuada extends Model
     protected $fillable = [
         'numero',
     ];
+
+    public function delete() {
+        return false;
+    }
 }

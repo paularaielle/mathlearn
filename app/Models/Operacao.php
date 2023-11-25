@@ -34,4 +34,8 @@ class Operacao extends Model
     {
         return $this->simbolo == '/';
     }
+
+    public function delete() {
+        return false;
+    }
 }

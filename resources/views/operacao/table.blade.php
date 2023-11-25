@@ -12,7 +12,10 @@
                 <td scope="row">{{ $m->nome }}</td>
                 <td>{{ $m->simbolo }}</td>
                 <td class="col-3">
-                    <x-forms.actions id="{{ $m->id }}" router="{{ $router }}"/>
+                    <x-forms.actions
+                        id="{{ $m->id }}"
+                        :delete="false"
+                        router="{{ $router }}"/>
                 </td>
             </tr>
         @endforeach
