@@ -1,17 +1,18 @@
 <x-app-layout>
     <div class="container">
+        <x-message />
         <h2>
             <i class="fa-regular fa-pen-to-square"></i>
             Editar perfil: {{ $model->nome }}
         </h2>
 
-        <form method="POST" action="{{ route('salvarPerfil') }}" class="needs-validation row" novalidate>
+        <form method="POST" action="{{ route('salvarPerfil') }}" class="needs-validation row" enctype="multipart/form-data">
             @csrf
 
             @if($model->isAluno())
                 @include('components.aluno.avatar')
             @else
-                @include('components.aluno.avatar')
+                @include('components.avatar')
             @endif
 
             <div class="col-6">

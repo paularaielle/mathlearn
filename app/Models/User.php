@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Scopes\AtivoScope;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,11 @@ class User extends Authenticatable
         return isset(static::$perfis[$this->perfil])
             ? static::$perfis[$this->perfil]
             : 'Não definido';
+    }
+
+    public function src() {
+        return $this->isAluno()
+            ? asset($this->avatar)
+            : Storage::url($this->avatar);
     }
 }

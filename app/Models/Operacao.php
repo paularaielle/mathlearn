@@ -24,4 +24,14 @@ class Operacao extends Model
     {
         return "<img src='$this->image' title='Operacao: $this->nome' width='$w' />";
     }
+
+    public function isSub()
+    {
+        return $this->simbolo == '-';
+    }
+
+    public function isDiv()
+    {
+        return $this->simbolo == '/';
+    }
 }

@@ -5,6 +5,7 @@
     @endpush
 
     <div class="container">
+        <x-message />
         <div class="row justify-content-md-center">
             <div class="col col-lg-4 col-sm-6 col-md-6" style="margin: 20%">
                 <form method="POST" action="{{ route('authenticate') }}" class="text-center">

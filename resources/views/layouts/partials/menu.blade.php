@@ -11,7 +11,38 @@
     </div>
 
     <div class="offcanvas-body">
+
+        @if ($user)
+            <div class="row justify-content-md-center text-center">
+                <div class="col-lg-4 mb-2">
+                    <div
+                        class="rounded-circle bg-light border border-5 border-white"
+                        style="width: 140px; height: 140px; overflow: hidden;">
+                        @if ($user->avatar)
+                            <img src="{{ $user->src() }}" title="{{ $user->nome }}" width="140">
+                        @endif
+                    </div>
+                </div>
+                <h2 class="fw-normal mb-3">
+                    <i class="fa-regular fa-user"></i>
+                    {{ $user->nome }}
+                </h2>
+
+                @if ($user->isAluno())
+                    <h3>
+                        <i class="fa-solid fa-medal text-warning"></i> {{ $user->pontuacao }}
+                    </h3>
+                @endif
+            </div>
+        @endif
+
         <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">
+                    <i class="fa-solid fa-house"></i>
+                    Principal
+                </a>
+            </li>
             @if ($user->isAdmin())
                 @foreach (config('menu') as $route => $item)
                     <li class="list-group-item">
@@ -24,10 +55,6 @@
             @endif
 
             @auth
-                <li class="list-group-item list-group-item-light pt-2 pb-2">
-                    <i class="fa-regular fa-user"></i>
-                    <b>{{ $user->nome }}</b>
-                </li>
                 <li class="list-group-item list-group-item-light pt-2 pb-2">
                     <i class="fa-regular fa-envelope"></i>
                     {{ $user->email }}

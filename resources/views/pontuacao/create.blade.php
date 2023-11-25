@@ -27,7 +27,13 @@
 
                 <div class="row mt-5">
                     <div class="col-12">
-                        <livewire:tabuada-form-post :tabuada="$tabuada" :operacao="$operacao"/>
+                        {{-- @if ($operacao->isSub())
+                            <livewire:subtracao-form-post :tabuada="$tabuada" :operacao="$operacao"/> --}}
+                        @if($operacao->isDiv())
+                            <livewire:divisao-form-post :tabuada="$tabuada" :operacao="$operacao"/>
+                        @else
+                            <livewire:tabuada-form-post :tabuada="$tabuada" :operacao="$operacao"/>
+                        @endif
                     </div>
                 </div>
 

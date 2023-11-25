@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\AlunoResposta;
 use Illuminate\Support\Facades\DB;
 
-class TabuadaFormPost extends Component
+class DivisaoFormPost extends Component
 {
     use LivewireAlert;
 
@@ -165,17 +165,20 @@ class TabuadaFormPost extends Component
     {
         $valor1 = 0;
         $valor2 = 0;
-        if ($numero < $tabuada) {
-            $valor1 = $tabuada;
-            $valor2 = $numero;
-        }
-        if ($tabuada < $numero) {
+        if ($tabuada == 1) {
             $valor1 = $numero;
             $valor2 = $tabuada;
         }
-        if ($numero == $tabuada) {
-            $valor1 = $numero;
-            $valor2 = $tabuada;
+
+        if ($tabuada >= 2) {
+
+            if ($numero == 1) {
+                $valor1 = $tabuada;
+                $valor2 = $tabuada;
+            } else {
+                $valor1 = $tabuada * $numero;
+                $valor2 = $tabuada;
+            }
         }
 
         return [
@@ -187,6 +190,6 @@ class TabuadaFormPost extends Component
 
     public function render()
     {
-        return view('livewire.tabuada-form-post');
+        return view('livewire.divisao-form-post');
     }
 }

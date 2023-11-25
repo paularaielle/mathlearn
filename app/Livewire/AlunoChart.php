@@ -68,12 +68,12 @@ class AlunoChart extends Component
             ->count();
 
         $this->chartColumn = $this->baseChart(new ColumnChartModel(), $title);
-        $this->chartColumn->addColumn("Erros", $errou, $this->colors[0]);
-        $this->chartColumn->addColumn("Acertos", $acertou, $this->colors[1]);
+        $this->chartColumn->addColumn("Erros", $errou, '#e82734');
+        $this->chartColumn->addColumn("Acertos", $acertou, '#44ef2d');
 
         $this->pieChart = $this->baseChart(new PieChartModel(), $title);
-        $this->pieChart->addSlice("Erros", $errou, $this->colors[0]);
-        $this->pieChart->addSlice("Acertos", $acertou, $this->colors[1]);
+        $this->pieChart->addSlice("Erros", $errou, '#e82734');
+        $this->pieChart->addSlice("Acertos", $acertou, '#44ef2d');
     }
 
     public function initCharts()

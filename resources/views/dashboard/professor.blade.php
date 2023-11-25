@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <h2>
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-house"></i>
                     Bem vindo
                 </h2>
 

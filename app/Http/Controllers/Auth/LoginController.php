@@ -62,6 +62,13 @@ class LoginController extends Controller
             return back();
         }
 
+        // Upload de imagem
+        if ($request->hasFile('photo')) {
+            $data['avatar'] = $request->file('photo')->store('public');
+        } else {
+            $data['avatar'] = $request->avatar;
+        }
+
         $data = [
             'email' => $request->email,
             'nickname' => $request->nickname,

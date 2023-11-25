@@ -11,7 +11,7 @@ function calc ($valor1, $valor2, $simbolo)
             $resultado = $valor1 + $valor2;
             break;
         case "-":
-            $resultado = $valor1 + $valor2;
+            $resultado = $valor1 - $valor2;
             break;
         case "*":
             $resultado = $valor1 * $valor2;
