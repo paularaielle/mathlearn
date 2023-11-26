@@ -7,6 +7,8 @@ use App\Http\Requests\ProfessorRequest;
 use App\Models\Professor;
 use App\Models\Turma;
 use App\Models\Operacao;
+use App\Models\Aluno;
+use App\Models\PessoaTurma;
 
 class ProfessorController extends BaseController
 {
@@ -96,9 +98,18 @@ class ProfessorController extends BaseController
     // Funções somente para professor
     public function alunosPorTurma(String $turmaId)
     {
-        $turma = Turma::find($turmaId);
+        abort_if(!$turma = Turma::find($turmaId), 404);
+
+        $ids = PessoaTurma::where('turma_id', $turmaId)->pluck('user_id')->all();
+
+        if(! count($ids)) {
+            session()->flash('danger', 'Essa turma não tem alunos!');
+
+            return redirect()->route('dashboard');
+        }
+
         $operacoes = Operacao::all();
-        $models = $turma->alunos()->orderBy('pontuacao', 'desc')->get();
+        $models = Aluno::whereIn('id', $ids)->orderBy('pontuacao', 'desc')->get();
 
         return view('professor.alunos')
             ->with('models', $models)

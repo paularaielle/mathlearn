@@ -16,17 +16,31 @@
                         </h3>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 mt-5">
                         <div class="row">
                             @foreach ($turmas as $m)
-                                <div class="col-3 p-5 d-grid gap-2">
-                                    <a
-                                        href="{{ route('turma.alunos', $m->id) }}"
-                                        class="btn btn-outline-light btn-lg btn-operacao"
-                                    >
-                                        <i class="fa-solid fa-chalkboard"></i>
-                                        {{ $m->nome }}
-                                    </a>
+                                <div class="col-3">
+                                    <div class="card shadow-lg">
+                                        <div class="card-body">
+                                          <h3 class="card-title">{{ $m->nome }}</h3>
+                                          {{-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> --}}
+                                          {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                          <a href="#" class="card-link">Card link</a>
+                                          <a href="#" class="card-link">Another link</a> --}}
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Turno: {{ $m->turno }}</li>
+                                            <li class="list-group-item">Total de Alunos: {{ $m->totalAlunos()}} </li>
+                                        </ul>
+                                        <div class="card-body">
+                                          <a
+                                            href="{{ route('turma.alunos', $m->id) }}"
+                                            class="text-white stretched-link btn btn-outline-light btn-sm bg-math">
+                                              <i class="fa-solid fa-chalkboard"></i>
+                                              Detalhes
+                                          </a>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

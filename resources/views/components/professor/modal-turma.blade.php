@@ -1,5 +1,5 @@
 @if ($ids)
-    <button type="button" class="btn btn-primary btn-lg bg-math" data-bs-toggle="modal" data-bs-target="#modal-{{ $key }}">
+    <button type="button" class="btn btn-primary btn-sm bg-math" data-bs-toggle="modal" data-bs-target="#modal-{{ $key }}">
         <i class="fa-solid fa-chart-simple"></i>
         <i class="fa-solid fa-chart-pie"></i> Detalhes
     </button>

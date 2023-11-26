@@ -11,11 +11,9 @@
                 <div class="card" data-bs-theme="dark">
                     <div class="card-header">
                         Lista de Alunos
-                        
-
                         <a href="{{ route('dashboard') }}" class="btn btn-dark float-end text-with">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Voltar
+                            <i class="fa-solid fa-house"></i>
+                            Principal
                         </a>
                     </div>
                     <div class="card-body">
