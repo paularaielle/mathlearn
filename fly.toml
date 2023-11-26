@@ -13,9 +13,11 @@ console_command = "php /var/www/html/artisan tinker"
     PHP_VERSION = "8.1"
 
 [env]
+  APP_URL = "https://mathlearn.fly.dev"
   APP_NAME = "Mathlearn"
-  APP_ENV = "local"
-  APP_DEBUG = true
+  APP_KEY = "base64:LnVU03Wn72dSndtftSFdFKGso4YKJaheEK1o1/6mxGM="
+  APP_ENV = "production"
+  APP_DEBUG = false
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
