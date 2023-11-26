@@ -20,9 +20,9 @@ class Operacao extends Model
         'icon',
     ];
 
-    public function img(String $w = '80px')
+    public function img(String $w = '80')
     {
-        return "<img src='$this->image' title='Operacao: $this->nome' width='$w' />";
+        return "<img src='$this->imagem' title='Operacao: $this->nome' width='$w' />";
     }
 
     public function isSub()

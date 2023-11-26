@@ -26,4 +26,14 @@ class Aluno extends \App\Models\User
 
         return parent::delete();
     }
+
+    public function acertos()
+    {
+        return AlunoResposta::where('aluno_id', $this->id)->where('acerto', true)->count();
+    }
+
+    public function erros()
+    {
+        return AlunoResposta::where('aluno_id', $this->id)->where('acerto', false)->count();
+    }
 }

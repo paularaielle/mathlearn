@@ -71,8 +71,14 @@ class User extends Authenticatable
     }
 
     public function src() {
+        if (!$this->avatar) {
+            return asset('img/no-avatar.png');
+        }
+
         return $this->isAluno()
             ? asset($this->avatar)
             : Storage::url($this->avatar);
+
+
     }
 }

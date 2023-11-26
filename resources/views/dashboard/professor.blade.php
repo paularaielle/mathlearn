@@ -17,11 +17,19 @@
                     </div>
 
                     <div class="col-12">
-                        @foreach ($turmas as $m)
-                            <button type="button" class="btn btn-outline-light btn-lg border border-5 m-2 px-4 rounded-pill border-white">
-                                {{ $m->nome }}
-                            </button>
-                        @endforeach
+                        <div class="row">
+                            @foreach ($turmas as $m)
+                                <div class="col-3 p-5 d-grid gap-2">
+                                    <a
+                                        href="{{ route('turma.alunos', $m->id) }}"
+                                        class="btn btn-outline-light btn-lg btn-operacao"
+                                    >
+                                        <i class="fa-solid fa-chalkboard"></i>
+                                        {{ $m->nome }}
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
                 </div>

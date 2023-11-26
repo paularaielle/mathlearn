@@ -24,6 +24,7 @@
         <main>
             {{ $slot }}
         </main>
+        @include('layouts.partials.footer')
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>

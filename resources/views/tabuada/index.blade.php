@@ -21,18 +21,18 @@
                     </ol>
                 </nav>
 
-                <div class="row mt-5">
-                    <div class="col-12">
-                        @foreach($tabuadas as $m)
+                <div class="row mt-5 text-center justify-content-evenly">
+
+                    @foreach($tabuadas as $m)
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-2 col-xl-1 col-xxl-1 p-2 mb-2">
                             <a
                                 href="{{ route('pontuacao.create', [$operacao->id, $m->id]) }}"
-                                class="btn btn-outline-light btn-lg btn-tabuada">
+                                class="btn btn-outline-light btn-lg fs-1 btn-tabuada">
                                 {{ $m->numero }}
                             </a>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
-
             </div>
         </div>
     </div>

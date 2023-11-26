@@ -1,13 +1,13 @@
 <div>
 
     @php
-        $data = $this->ordenar($operador, $operacao->simbolo, $tabuada->numero)
+        $data = $questoes[$operador];
     @endphp
 
     <form wire:submit="saveBlockDefault" class="row">
         <input type="hidden" wire:model="operador" value="{{ $operador }}">
 
-        <div class="col-2 box-cron">
+        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2 box-cron">
             <img src="{{ asset('img/simbolos/cronometro.png') }}" alt="Cronometro" width="150px">
             @if ($enableSave)
                 <h2>{{ $tempo }}</h2>
@@ -16,7 +16,7 @@
             @endif
         </div>
 
-        <div class="col-8 box-calc">
+        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 col-xxl-8 box-calc">
             <div class="row">
                 <div class="col-12 mb-5">
                     Digite a resposta (número)
@@ -25,8 +25,8 @@
                 <div class="col-2">
                     {{ $data['valor1'] }}
                 </div>
-                <div class="col-3" style="color: #79c9fa;">
-                    {!! $operacao->imagem !!}
+                <div class="col-3">
+                    <img src="{{ asset($operacao->imagem) }}" title="{{ $operacao->nome }}" width="85">
                 </div>
                 <div class="col-2">
                     {{ $data['valor2'] }}
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="col-2 box-cron">
+        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2 box-cron">
             <br>
             <h2>Questões</h1>
             <br>
@@ -80,13 +80,13 @@
                 else $erros[] = 1;
             }
         @endphp
-        <div class="col-4 text-danger">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 mb-3 text-danger">
             <h2>
                 <i class="fa-regular fa-thumbs-down"></i>
                 Respostas erradas: {{ count($erros) }}
             </h2>
         </div>
-        <div class="col-4 text-success">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 mb-3 text-success">
             <h2>
                 <i class="fa-regular fa-thumbs-up"></i>
                 Respostas certas: {{ count($acertos) }}

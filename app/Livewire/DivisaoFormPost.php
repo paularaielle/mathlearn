@@ -21,6 +21,7 @@ class DivisaoFormPost extends Component
     public $acertos = [];
     public $operador = 1;
     public $questao = 1;
+    public $questoes = [];
     public $user;
     // Form
     public $tabuada, $operacao, $resposta, $tempo;
@@ -30,6 +31,7 @@ class DivisaoFormPost extends Component
         $this->user = auth()->user();
         $this->tabuada = $tabuada;
         $this->operacao = $operacao;
+        $this->questoes = questoesAleatorias($this->operacao->simbolo, $this->tabuada->numero);
     }
 
     public function cronStart () {
@@ -62,8 +64,9 @@ class DivisaoFormPost extends Component
 
     public function responder()
     {
-        // Ordenador
-        $acertou = $this->acertou($this->operador);
+        $data = $this->questoes[$this->questao];
+        $acertou = $this->resposta == $data['resposta'] ? true : false;
+        $formula = $data['formula'];
 
         $this->respostas[$this->operador] = [
             'operacao_id' => $this->operacao->id,
@@ -72,7 +75,7 @@ class DivisaoFormPost extends Component
             'resposta' => $this->resposta,
             'acerto' => $acertou,
             'tempo' => $this->tempo,
-            'formular' => $this->setFormula($this->operador),
+            'formular' => $formula,
             'operador' => $this->operador,
         ];
 
@@ -97,23 +100,6 @@ class DivisaoFormPost extends Component
 
     // apenas bloqueia o submit do formulário
     public function saveBlockDefault(){}
-
-    public function setFormula($operador)
-    {
-        $data = $this->ordenar($operador, $this->operacao->simbolo, $this->tabuada->numero);
-
-        return $data['valor1'] . $this->operacao->simbolo . $data['valor2'] . " = " . $this->resposta;
-    }
-
-    // testa se o Aluno acertou a resposta
-    public function acertou($operador)
-    {
-        $data = $this->ordenar($operador, $this->operacao->simbolo, $this->tabuada->numero);
-
-        $resultado = calc($data['valor1'], $data['valor2'], $data['simbolo']);
-
-        return $resultado == $this->resposta;
-    }
 
     public function save()
     {
@@ -141,10 +127,6 @@ class DivisaoFormPost extends Component
      */
     public function reCalcular()
     {
-        $this->h = 0;
-        $this->m = 0;
-        $this->s = 0;
-        $this->tempo = "0:00";
         $this->resposta = null;
 
         // Aumenta Operador
@@ -159,33 +141,6 @@ class DivisaoFormPost extends Component
         }
 
         if (isset($this->respostas[10])) $this->enableSave = true;
-    }
-
-    public function ordenar ($numero, $simbolo, $tabuada)
-    {
-        $valor1 = 0;
-        $valor2 = 0;
-        if ($tabuada == 1) {
-            $valor1 = $numero;
-            $valor2 = $tabuada;
-        }
-
-        if ($tabuada >= 2) {
-
-            if ($numero == 1) {
-                $valor1 = $tabuada;
-                $valor2 = $tabuada;
-            } else {
-                $valor1 = $tabuada * $numero;
-                $valor2 = $tabuada;
-            }
-        }
-
-        return [
-            'valor1' => $valor1,
-            'simbolo' => $simbolo,
-            'valor2' => $valor2,
-        ];
     }
 
     public function render()

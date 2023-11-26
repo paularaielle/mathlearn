@@ -8,6 +8,12 @@ use App\Models\Tabuada;
 
 class TabuadaController extends Controller
 {
+    // public function __construct () {
+    //     $user = auth()->user();
+
+    //     if (!$user->isAluno()) redirect()->route('dashboard');
+    // }
+
     public function index(string $operacaoId)
     {
         $operacao = Operacao::find($operacaoId);

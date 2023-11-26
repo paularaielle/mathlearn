@@ -25,7 +25,7 @@
                                         class="btn btn-outline-light btn-lg btn-operacao"
                                     >
                                         {{ $m->nome }}
-                                        {!! $m->icon !!}
+                                        {!! $m->img('35') !!}
                                     </a>
                                 </div>
                             @endforeach

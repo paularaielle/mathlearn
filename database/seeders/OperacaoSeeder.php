@@ -18,25 +18,25 @@ class OperacaoSeeder extends Seeder
                 [
                     'nome' => 'Soma',
                     'simbolo' => '+',
-                    'imagem' => 'img/simbolos/soma.pmg',
+                    'imagem' => 'img/simbolos/soma.png',
                     'icon' => '<i class="fa-solid fa-plus"></i>',
                 ],
                 [
                     'nome' => 'Multiplicação',
                     'simbolo' => '*',
-                    'imagem' => 'img/simbolos/mult.pmg',
+                    'imagem' => 'img/simbolos/mult.png',
                     'icon' => '<i class="fa-solid fa-xmark"></i>',
                 ],
                 [
                     'nome' => 'Subtração',
                     'simbolo' => '-',
-                    'imagem' => 'img/simbolos/sub.pmg',
+                    'imagem' => 'img/simbolos/sub.png',
                     'icon' => '<i class="fa-solid fa-minus"></i>',
                 ],
                 [
                     'nome' => 'Divisão',
                     'simbolo' => '/',
-                    'imagem' => 'img/simbolos/div.pmg',
+                    'imagem' => 'img/simbolos/div.png',
                     'icon' => '<i class="fa-solid fa-divide"></i>',
                 ],
             ];

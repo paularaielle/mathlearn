@@ -16,11 +16,9 @@
             <div class="row justify-content-md-center text-center">
                 <div class="col-lg-4 mb-2">
                     <div
-                        class="rounded-circle bg-light border border-5 border-white"
+                        class="rounded-circle bg-light border border-5 border-warning p-0"
                         style="width: 140px; height: 140px; overflow: hidden;">
-                        @if ($user->avatar)
-                            <img src="{{ $user->src() }}" title="{{ $user->nome }}" width="140">
-                        @endif
+                        <img src="{{ $user->src() }}" title="{{ $user->nome }}" width="130" style="margin: auto;">
                     </div>
                 </div>
                 <h2 class="fw-normal mb-3">

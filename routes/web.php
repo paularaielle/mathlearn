@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('operacao', OperacaoController::class);
 
     // Professor
+    Route::get('turma-alunos/{turmaId}', [ProfessorController::class, 'alunosPorTurma'])->name('turma.alunos');
 
     // Aluno
     Route::get('tabuada/{id}', [TabuadaController::class, 'index'])->name('tabuada.index');

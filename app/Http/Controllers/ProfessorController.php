@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfessorRequest;
 use App\Models\Professor;
+use App\Models\Turma;
+use App\Models\Operacao;
 
 class ProfessorController extends BaseController
 {
@@ -69,7 +71,6 @@ class ProfessorController extends BaseController
 
         if ($model->update($request->all())) {
             $request->session()->flash('success', 'Registro atualizado');
-
             return $this->redirectIndex();
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');
@@ -90,5 +91,18 @@ class ProfessorController extends BaseController
         request()->session()->flash('danger', 'Falha ao excluir!');
 
         return back();
+    }
+
+    // Funções somente para professor
+    public function alunosPorTurma(String $turmaId)
+    {
+        $turma = Turma::find($turmaId);
+        $operacoes = Operacao::all();
+        $models = $turma->alunos()->orderBy('pontuacao', 'desc')->get();
+
+        return view('professor.alunos')
+            ->with('models', $models)
+            ->with('turma', $turma)
+            ->with('operacoes', $operacoes);
     }
 }
