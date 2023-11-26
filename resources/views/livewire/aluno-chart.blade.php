@@ -23,7 +23,7 @@
 
         <div class="row">
             <div class="col-6">
-                <div class="card rounded-4 bg-light bg-gradient" style="height: 400px;">
+                <div class="card rounded-4" style="height: 400px;">
                     <div class="card-body">
                         <livewire:livewire-column-chart
                             key="{{ $chartColumn->reactiveKey() }}"
@@ -34,7 +34,7 @@
             </div>
 
             <div class="col-6">
-                <div class="card rounded-4 bg-light bg-gradient" style="height: 400px;">
+                <div class="card rounded-4" style="height: 400px;">
                     <div class="card-body">
                         <livewire:livewire-pie-chart
                             key="{{ $pieChart->reactiveKey() }}"
