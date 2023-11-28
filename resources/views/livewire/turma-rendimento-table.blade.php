@@ -46,7 +46,7 @@
                                         <td>
                                             {{ $a->nome }}
                                             <br>
-                                            Medalha: {{ $a->iconMedal() }}
+                                            Medalha: {!! $a->iconMedal() !!}
                                         </td>
                                         <td>
                                             <ul class="list-group list-group-flush">
