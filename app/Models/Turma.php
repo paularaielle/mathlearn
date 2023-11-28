@@ -22,11 +22,6 @@ class Turma extends Model
         static::addGlobalScope(new AtivoScope);
     }
 
-    public function alunos(): BelongsToMany
-    {
-        return $this->belongsToMany(Aluno::class, 'pessoa_turmas', 'turma_id', 'user_id');
-    }
-
     public function professores(): BelongsToMany
     {
         return $this->belongsToMany(Professor::class, 'pessoa_turmas', 'turma_id', 'user_id');
@@ -35,6 +30,12 @@ class Turma extends Model
     public function totalAlunos()
     {
         return Aluno::whereIn('id', PessoaTurma::where('turma_id', $this->id)->pluck('user_id')->all())->count();
+    }
+
+    public function alunos () {
+        return Aluno::whereIn('id', PessoaTurma::where('turma_id', $this->id)->pluck('user_id')->all())
+            ->orderBy('pontuacao', 'desc')
+            ->get();
     }
 
     public function delete() {

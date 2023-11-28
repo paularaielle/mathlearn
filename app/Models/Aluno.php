@@ -27,21 +27,51 @@ class Aluno extends \App\Models\User
         return parent::delete();
     }
 
-    public function acertos()
+    public function totalResposta($operacaoId = null, $acerto=null)
     {
-        return AlunoResposta::where('aluno_id', $this->id)->where('acerto', true)->count();
+        $query = AlunoResposta::where('aluno_id', $this->id);
+        if ($operacaoId) $query->where('operacao_id', $operacaoId);
+        if ($acerto !== null) {
+            if ($acerto === false) $query->where('acerto', false);
+            if ($acerto === true) $query->where('acerto', true);
+        }
+
+        return $query->count();
     }
 
-    public function erros()
+    public function acertos($operacaoId = null)
     {
-        return AlunoResposta::where('aluno_id', $this->id)->where('acerto', false)->count();
+        // $query = AlunoResposta::where('aluno_id', $this->id)->where('acerto', true);
+        // if ($operacaoId) $query->where('operacao_id', $operacaoId);
+        return $this->totalResposta($operacaoId, true);
+    }
+
+    public function erros($operacaoId = null)
+    {
+        // $query = AlunoResposta::where('aluno_id', $this->id)->where('acerto', false);
+        // if ($operacaoId) $query->where('operacao_id', $operacaoId);
+
+        // return $query->count();
+        return $this->totalResposta($operacaoId, false);
+    }
+
+    // Aproveitamento em %
+    public function aproveitamento ($operacaoId)
+    {
+        // $total = AlunoResposta::where('operacao_id', $operacaoId)->where('aluno_id', $this->id)->count();
+        $total = $this->totalResposta($operacaoId);
+        $acertos = $this->acertos($operacaoId);
+
+        if ($acertos == 0) return 0;
+
+        return ($acertos * 100) / $total;
     }
 
     public function iconMedal()
     {
         $medalhas = config('medalha');
         foreach ($medalhas as $m) {
-            if ($m['start'] >= $this->pontuacao && $this->pontuacao <=  $m['end']) {
+            if (in_array($this->pontuacao, range($m['start'], $m['end']))){
                 return '<i class="fa-solid fa-medal ' . $m['color'] . '"></i>';
             }
         }

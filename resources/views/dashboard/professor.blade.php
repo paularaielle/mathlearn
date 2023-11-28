@@ -39,6 +39,8 @@
                                     </div>
                                 </div>
                             @endforeach
+
+                            <livewire:turma-rendimento-table :turmas="$turmas" />
                         </div>
                     </div>
 

@@ -23,9 +23,9 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nome do Aluno</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Pontuação</th>
-                                    <th scope="col">Acertos</th>
-                                    <th scope="col">Erros</th>
+                                    <th scope="col" class="text-center">Pontuação</th>
+                                    <th scope="col" class="text-center">Acertos</th>
+                                    <th scope="col" class="text-center">Erros</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -38,7 +38,7 @@
                                         <td class="text-warning fw-bold text-center">{{ $m->pontuacao }}</td>
                                         <td class="text-success fw-bold text-center">{{ $m->acertos() }}</td>
                                         <td class="text-danger fw-bold text-center">{{ $m->erros() }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             @include('components.professor.modal-aluno', [
                                                 'key' => $i,
                                                 'model' => $m,
@@ -56,6 +56,11 @@
                             'key' => md5('turma'),
                             'operacoes' => $operacoes,
                             'ids' => $models->pluck('id')->all(),
+                        ])
+
+                        @include('components.professor.modal-redimento', [
+                            'key' => md5('redimento'),
+                            'turma' => $turma,
                         ])
                     </div>
                 </div>

@@ -5,8 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\AlunoResposta;
 use App\Models\Operacao;
-// use App\Models\Operacao;
-// use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Asantibanez\LivewireCharts\Models\ColumnChartModel;
 use Asantibanez\LivewireCharts\Models\PieChartModel;
 

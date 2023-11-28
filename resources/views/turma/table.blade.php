@@ -3,6 +3,7 @@
         <tr>
             <th scope="col">Nome da turma</th>
             <th scope="col">Turno</th>
+            <th scope="col" class="text-center">Alunos</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -11,6 +12,9 @@
             <tr>
                 <td scope="row">{{ $m->nome }}</td>
                 <td>{{ $m->turno }}</td>
+                <td class="text-center">
+                    {{ $m->totalAlunos() }}
+                </td>
                 <td class="col-3">
                     <x-forms.actions
                         id="{{ $m->id }}"

@@ -7,10 +7,6 @@
 
         <x-forms.input type="number" placeholder="Turno" name="turno" value="{{ $model->turno }}" />
 
-        <x-forms.input type="number" placeholder="Imagem" name="imagem" value="{{ $model->imagem }}" />
-
-        <x-forms.input type="number" placeholder="Icon" name="icon" value="{{ $model->icon }}" />
-
         <button type="submit" class="btn btn-lg btn-math">
             <i class="fa-regular fa-floppy-disk"></i>
             Salvar
