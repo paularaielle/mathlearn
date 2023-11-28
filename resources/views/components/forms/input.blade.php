@@ -1,9 +1,14 @@
 @props(['disabled' => false])
 @props(['icon' => 'fa-solid fa-chevron-right'])
 @props(['label' => null])
+@props(['model' => null])
 
 @php
     $invalid = '';
+    $value = request($name);
+    if ($model) {
+        if ($model->name) $value = $model->name;
+    }
 @endphp
 
 @error($name)
@@ -32,7 +37,7 @@
                 'id' => $name,
                 'name' => $name,
                 'type' => $type,
-                'value' => old($name),
+                'value' => $value,
             ]) !!} >
 
     </div>

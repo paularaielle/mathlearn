@@ -1,12 +1,52 @@
 <form method="POST" action="{{ $action }}" class="needs-validation" novalidate>
-    @csrf
+    <fieldset @disabled(isset($disabled))>
 
-    <x-forms.input type="text" placeholder="Nome" name="nome" />
+        {{ get_method ($method) }}
 
-    <x-forms.input type="number" placeholder="Turno" name="turno" />
+        @csrf
 
-    <button type="submit" class="btn btn-lg btn-math">
-        <i class="fa-regular fa-floppy-disk"></i>
-        Salvar
-    </button>
+        <x-forms.input
+            type="text"
+            placeholder="Nome"
+            label="Nome"
+            name="nome"
+            value="{{ $model->nome }}"/>
+
+        <x-forms.input
+            type="text"
+            placeholder="Nickname"
+            label="Nickname"
+            name="nickname"
+            value="{{ $model->nickname }}" />
+
+        <x-forms.input
+            type="text"
+            placeholder="Email"
+            label="Email"
+            name="email"
+            value="{{ $model->email }}" />
+
+        @if(!$model->id)
+            <input type="hidden" name="password" value="{{ $password_temp }}">
+            <x-forms.input
+                type="text"
+                placeholder="Senha temporário"
+                label="Senha temporário"
+                name="password_temp"
+                value="{{ $password_temp }}"
+                disabled/>
+        @endif
+
+
+        @if ($model->id)
+            @include('turma.form-mult', [ 'ids' => $turmaIds ])
+        @else
+            @include('turma.form-mult')
+        @endif
+
+        <button type="submit" class="btn btn-lg btn-math">
+            <i class="fa-regular fa-floppy-disk"></i>
+            Salvar
+        </button>
+    </fieldset>
 </form>

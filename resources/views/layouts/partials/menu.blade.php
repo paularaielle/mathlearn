@@ -28,7 +28,7 @@
 
                 @if ($user->isAluno())
                     <h3>
-                        <i class="fa-solid fa-medal text-warning"></i> {{ $user->pontuacao }}
+                        {!! $user->iconMedal() !!} {{ $user->pontuacao }}
                     </h3>
                 @endif
             </div>

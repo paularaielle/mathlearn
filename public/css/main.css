@@ -86,3 +86,15 @@ body{
     vertical-align: middle;
     padding: 1rem;
 }
+
+.bg-ouro {
+    background-color: #ffd700;
+}
+
+.bg-prata {
+    background-color: #c0c0c0;
+}
+
+.bg-bronze {
+    background-color: #cd7f32;
+}

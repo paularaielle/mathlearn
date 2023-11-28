@@ -14,7 +14,7 @@ class AlunoChart extends Component
 {
     public $ids = [];
     public $operacoes;
-    public $active;
+    public $active = 'all';
     private $chartColumn;
     private $pieChart;
 
@@ -32,6 +32,7 @@ class AlunoChart extends Component
         $this->ids = $ids;
         $this->operacoes = $operacoes;
         $this->initCharts();
+        $this->clickAll();
     }
 
     public function clickAll()

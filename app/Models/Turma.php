@@ -34,7 +34,7 @@ class Turma extends Model
 
     public function totalAlunos()
     {
-        return PessoaTurma::where('turma_id', $this->id)->count();
+        return Aluno::whereIn('id', PessoaTurma::where('turma_id', $this->id)->pluck('user_id')->all())->count();
     }
 
     public function delete() {

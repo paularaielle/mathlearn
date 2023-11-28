@@ -9,6 +9,9 @@ use App\Models\Turma;
 use App\Models\Operacao;
 use App\Models\Aluno;
 use App\Models\PessoaTurma;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ProfessorController extends BaseController
 {
@@ -26,7 +29,10 @@ class ProfessorController extends BaseController
      */
     public function create()
     {
-        return view($this->create)->with('model', new Professor);
+
+        return view($this->create)
+            ->with('model', new Professor)
+            ->with('password_temp', Str::random(8));
     }
 
     /**
@@ -34,14 +40,29 @@ class ProfessorController extends BaseController
      */
     public function store(ProfessorRequest $request)
     {
-        if (Professor::create($request->all())) {
-            $request->session()->flash('success', 'Registro criado');
+        $passwordTemp = $request->password_temp;
 
-            return $this->redirectIndex();
+        $data = [
+            'password' => Hash::make($passwordTemp),
+            'perfil' => 2
+        ];
+
+        DB::beginTransaction();
+
+        if ($model = Professor::create($request->all() + $data)) {
+            $this->saveTurmas($request, $model->id);
+
+            DB::commit();
+
+            $request->session()->flash('success', 'Registro criado');
+            session()->flash('password_temp', $passwordTemp);
+
+            return $this->redirectShow($model->id);
         }
+        DB::rollBack();
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**
@@ -50,6 +71,8 @@ class ProfessorController extends BaseController
     public function show(string $id)
     {
         $model = Professor::find($id);
+
+        $this->getIdsTurmas($id);
 
         return view($this->show)->with('model', $model);
     }
@@ -61,23 +84,36 @@ class ProfessorController extends BaseController
     {
         $model = Professor::find($id);
 
+        $this->getIdsTurmas($id);
+
         return view($this->edit)->with('model', $model);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProfessorRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nome' => 'required',
+            'nickname' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        DB::beginTransaction();
         $model = Professor::find($id);
 
-        if ($model->update($request->all())) {
+        if ($model->update($request->all() + [ 'perfil' => 2 ])) {
+            $this->saveTurmas($request, $id);
+            DB::commit();
+
             $request->session()->flash('success', 'Registro atualizado');
             return $this->redirectIndex();
         }
+        DB::rollBack();
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**
@@ -115,5 +151,26 @@ class ProfessorController extends BaseController
             ->with('models', $models)
             ->with('turma', $turma)
             ->with('operacoes', $operacoes);
+    }
+
+    protected function getIdsTurmas ($id) {
+        $ids = PessoaTurma::where('user_id', $id)->pluck('turma_id')->all();
+        view()->share('turmaIds', $ids);
+    }
+
+    protected function saveTurmas ($request, $id)
+    {
+        $turmaIds = $request->turma_id;
+        if (count($turmaIds)) {
+            if ($id) PessoaTurma::where('user_id', $id)->delete();
+
+            foreach ($turmaIds as $turmaId) {
+                PessoaTurma::create([
+                    'turma_id' => $turmaId,
+                    'user_id' => $id,
+                    'ativo' => true,
+                ]);
+            }
+        }
     }
 }

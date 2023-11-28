@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container">
+        <x-message />
         <div class="row">
             <div class="col-12">
 
@@ -25,6 +26,7 @@
                         @include($path . '.form', [
                             'action' => '#',
                             'disabled' => true,
+                            'method' => 'POST',
                         ])
                     </div>
 

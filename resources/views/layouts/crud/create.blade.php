@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container">
+        <x-message />
         <div class="row">
             <div class="col-12">
 
@@ -23,7 +24,8 @@
 
                     <div class="card-body">
                         @include($path . '.form', [
-                            'action' => route($router.'.store')
+                            'action' => route($router.'.store'),
+                            'method' => 'POST',
                         ])
                     </div>
 

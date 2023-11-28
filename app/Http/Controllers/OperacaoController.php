@@ -37,7 +37,7 @@ class OperacaoController extends BaseController
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**
@@ -74,7 +74,7 @@ class OperacaoController extends BaseController
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**

@@ -15,8 +15,8 @@ class ProfessorRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'nickname' => 'required',
-            'email' => 'required|email',
+            'nickname' => 'required|unique:users,nickname',
+            'email' => 'required|email|unique:users,email',
         ];
     }
 }

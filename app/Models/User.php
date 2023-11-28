@@ -78,7 +78,13 @@ class User extends Authenticatable
         return $this->isAluno()
             ? asset($this->avatar)
             : Storage::url($this->avatar);
+    }
 
-
+    public function getTurmas () {
+        return Turma::whereIn('id',
+            PessoaTurma::where('user_id', $this->id)
+                ->pluck('turma_id')
+                ->all()
+        )->get();
     }
 }

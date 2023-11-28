@@ -16,7 +16,7 @@ class DashboardController extends Controller
         return view($pathview)
             ->with('user', $user)
             ->with('operacoes', Operacao::all())
-            ->with('turmas', Turma::all());
+            ->with('turmas', $user->getTurmas());
     }
 
     private function getView($user) {

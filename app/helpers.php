@@ -120,3 +120,8 @@ function questoesAleatorias ($simbolo, $tabuada)
 
     return $questoes;
 }
+
+function get_method ($method)
+{
+    return $method == 'PUT' ? method_field('PUT') : null;
+}

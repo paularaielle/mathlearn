@@ -36,4 +36,15 @@ class Aluno extends \App\Models\User
     {
         return AlunoResposta::where('aluno_id', $this->id)->where('acerto', false)->count();
     }
+
+    public function iconMedal()
+    {
+        $medalhas = config('medalha');
+        foreach ($medalhas as $m) {
+            if ($m['start'] >= $this->pontuacao && $this->pontuacao <=  $m['end']) {
+                return '<i class="fa-solid fa-medal ' . $m['color'] . '"></i>';
+            }
+        }
+        return '';
+    }
 }

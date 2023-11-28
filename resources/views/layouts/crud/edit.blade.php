@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container">
+        <x-message />
         <div class="row">
             <div class="col-12">
                 @if ($title)
@@ -22,7 +23,8 @@
 
                     <div class="card-body">
                         @include($path . '.form', [
-                            'action' => route($router.'.store')
+                            'action' => route($router.'.update', $model->id),
+                            'method' => 'PUT',
                         ])
                     </div>
 

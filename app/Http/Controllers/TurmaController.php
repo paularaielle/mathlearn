@@ -31,7 +31,7 @@ class TurmaController extends BaseController
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     public function show(string $id)
@@ -59,7 +59,7 @@ class TurmaController extends BaseController
         }
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     public function destroy(string $id)

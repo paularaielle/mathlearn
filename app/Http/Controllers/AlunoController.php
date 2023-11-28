@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlunoRequest;
 use App\Models\Aluno;
+use App\Models\PessoaTurma;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AlunoController extends BaseController
 {
@@ -22,7 +26,9 @@ class AlunoController extends BaseController
      */
     public function create()
     {
-        return view($this->create)->with('model', new Aluno);
+        return view($this->create)
+            ->with('model', new Aluno)
+            ->with('password_temp', Str::random(8));
     }
 
     /**
@@ -30,14 +36,28 @@ class AlunoController extends BaseController
      */
     public function store(AlunoRequest $request)
     {
-        if (Aluno::create($request->all())) {
-            $request->session()->flash('success', 'Registro criado');
+        $passwordTemp = $request->password_temp;
 
-            return $this->redirectIndex();
+        $data = [
+            'password' => Hash::make($passwordTemp),
+            'perfil' => 1
+        ];
+
+        DB::beginTransaction();
+
+        if ($model = Professor::create($request->all() + $data)) {
+            $this->saveTurmas($request, $model->id);
+            DB::commit();
+
+            $request->session()->flash('success', 'Registro criado');
+            session()->flash('password_temp', $passwordTemp);
+
+            return $this->redirectShow($model->id);
         }
+        DB::rollBack();
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**
@@ -46,6 +66,8 @@ class AlunoController extends BaseController
     public function show(string $id)
     {
         $model = Aluno::find($id);
+
+        $this->getIdsTurmas($id);
 
         return view($this->show)->with('model', $model);
     }
@@ -57,24 +79,36 @@ class AlunoController extends BaseController
     {
         $model = Aluno::find($id);
 
+        $this->getIdsTurmas($id);
+
         return view($this->edit)->with('model', $model);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AlunoRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nome' => 'required',
+            'nickname' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        DB::beginTransaction();
         $model = Aluno::find($id);
 
-        if ($model->update($request->all())) {
-            $request->session()->flash('success', 'Registro atualizado');
+        if ($model->update($request->all() + [ 'perfil' => 1 ])) {
+            $this->saveTurmas($request, $id);
+            DB::commit();
 
+            $request->session()->flash('success', 'Registro atualizado');
             return $this->redirectIndex();
         }
+        DB::rollBack();
         $request->session()->flash('danger', 'Falha ao criar registro!');
 
-        return back();
+        return back()->withInput();
     }
 
     /**
@@ -90,5 +124,26 @@ class AlunoController extends BaseController
         request()->session()->flash('danger', 'Falha ao excluir!');
 
         return back();
+    }
+
+    protected function getIdsTurmas ($id) {
+        $model = PessoaTurma::where('user_id', $id)->first();
+
+        view()->share('turma_id', $model->turma_id);
+    }
+
+    protected function saveTurmas ($request, $id)
+    {
+        $turmaId = $request->turma_id;
+
+        if ($id) PessoaTurma::where('user_id', $id)->delete();
+
+        if ($turmaId) {
+            PessoaTurma::create([
+                'turma_id' => $turmaId,
+                'user_id' => $id,
+                'ativo' => true,
+            ]);
+        }
     }
 }

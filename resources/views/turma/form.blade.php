@@ -1,6 +1,7 @@
 <form method="POST" action="{{ $action }}" class="needs-validation" novalidate>
     <fieldset @disabled(isset($disabled))>
         @csrf
+        {{ get_method ($method) }}
 
         <x-forms.input type="text" placeholder="Nome" name="nome" value="{{ $model->nome }}" />
 
