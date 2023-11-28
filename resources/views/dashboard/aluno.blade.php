@@ -19,7 +19,7 @@
                     <div class="col-12">
                         <div class="row">
                             @foreach ($operacoes as $m)
-                                <div class="col-3 p-5 d-grid gap-2">
+                                <div class="col-3 p-2 d-grid gap-2">
                                     <a
                                         href="{{ route('tabuada.index', $m->id) }}"
                                         class="btn btn-outline-light btn-lg btn-operacao"

@@ -87,4 +87,17 @@ class User extends Authenticatable
                 ->all()
         )->get();
     }
+
+    public function iconMedal()
+    {
+        if ($this->isAluno()) {
+            $medalhas = config('medalha');
+            foreach ($medalhas as $m) {
+                if (in_array($this->pontuacao, range($m['start'], $m['end']))){
+                    return '<i class="fa-solid fa-medal ' . $m['color'] . '"></i>';
+                }
+            }
+        }
+        return '';
+    }
 }

@@ -147,7 +147,7 @@ class ProfessorController extends BaseController
         $operacoes = Operacao::all();
         $models = Aluno::whereIn('id', $ids)
             // ->orderBy('pontuacao', 'desc')
-            ->orderBy(DB::raw('ISNULL(pontuacao), pontuacao'), 'desc')
+            ->orderByRaw('pontuacao IS NULL, pontuacao DESC')
             ->get();
 
         return view('professor.alunos')

@@ -66,15 +66,4 @@ class Aluno extends \App\Models\User
 
         return ($acertos * 100) / $total;
     }
-
-    public function iconMedal()
-    {
-        $medalhas = config('medalha');
-        foreach ($medalhas as $m) {
-            if (in_array($this->pontuacao, range($m['start'], $m['end']))){
-                return '<i class="fa-solid fa-medal ' . $m['color'] . '"></i>';
-            }
-        }
-        return '';
-    }
 }
