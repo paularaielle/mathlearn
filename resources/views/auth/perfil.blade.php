@@ -6,7 +6,7 @@
             Editar perfil: {{ $model->nome }}
         </h2>
 
-        <form method="POST" action="{{ route('salvarPerfil') }}" class="needs-validation row" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('salvarPerfil') }}" class="needs-validation row" enctype="multipart/form-data" autocomplete="off">
             @csrf
 
             @if($model->isAluno())
@@ -50,15 +50,19 @@
 
                 <x-forms.input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Senha"
                     label="Senha"
-                    name="password"/>
+                    name="password"
+                    autocomplete="off"
+                />
 
                 <x-forms.input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Confirmar senha"
                     label="Confirmar senha"
-                    name="password_confirmation"/>
+                    name="password_confirmation"
+                    autocomplete="off"
+                    />
 
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-lg btn-math">

@@ -2,6 +2,7 @@
     <div class="col-6">
         <div class="row justify-content-md-center mt-5">
             <button
+                type="button"
                 class="border border-5 border-warning rounded-circle bg-light p-0"
                 style="overflow: hidden; width: 250px; height: 250px;">
                 <img
