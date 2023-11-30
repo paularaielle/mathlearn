@@ -5,10 +5,16 @@
             <div class="col-12">
                 @if ($title)
                     <h2 class="mb-3">
-                        {{-- <i class="fa-solid fa-house"></i> --}}
+                        <i class="fa-regular fa-pen-to-square"></i>
                         {{ $title }}
                     </h2>
                 @endif
+
+                @include('layouts.partials.breadcrumb', [
+                    'home' => $router . '.index',
+                    'startLabel' => $title,
+                    'endLabel' => 'Editar',
+                ])
 
                 <div class="card shadow">
 

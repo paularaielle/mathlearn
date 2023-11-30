@@ -125,3 +125,8 @@ function get_method ($method)
 {
     return $method == 'PUT' ? method_field('PUT') : null;
 }
+
+function no_accents($str)
+{
+    return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+}

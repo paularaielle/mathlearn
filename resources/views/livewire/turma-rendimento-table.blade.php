@@ -34,7 +34,14 @@
                                     <th scope="col">#</th>
                                     <th scope="col" class="text-center">Pontuação</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col" class="text-center">Aproveitamento %</th>
+
+                                    @foreach($operadores as $m)
+                                        <th scope="col">
+                                            <img src="{{ asset($m->imagem) }}" title="{{ $m->nome }}" width="20">
+                                            {{ $m->nome }}
+                                        </th>
+                                    @endforeach
+                                    {{-- <th scope="col" class="text-center">Aproveitamento %</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,27 +55,28 @@
                                             <br>
                                             Medalha: {!! $a->iconMedal() !!}
                                         </td>
-                                        <td>
-                                            <ul class="list-group list-group-flush">
-                                                @foreach($operadores as $m)
-                                                    @php
-                                                        $key = md5($a->id . $m->id);
-                                                    @endphp
-                                                    <li class="list-group-item list-group-item-action">
-                                                        <div class="w-100 justify-content-between">
-                                                            <img src="{{ asset($m->imagem) }}" title="{{ $m->nome }}" width="20">
-                                                            {{ $m->nome }}
-                                                            <span class="badge bg-muted rounded-pill float-end">
-                                                                {{ $a->aproveitamento($m->id) }}% de aproveitamento
-                                                            </span>
-                                                        </div>
-                                                        <span class="badge text-bg-light">{{ $a->totalResposta($m->id) }} total de questões</span>
-                                                        <span class="badge text-bg-success">{{ $a->acertos($m->id) }} acertos</span>
-                                                        <span class="badge text-bg-danger">{{ $a->erros($m->id) }} erros</span>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
+                                            {{-- <ul class="list-group list-group-flush"> --}}
+                                        @foreach($operadores as $m)
+                                            <td>
+                                            @php
+                                                $key = md5($a->id . $m->id);
+                                            @endphp
+                                                {{-- <div class="w-100 justify-content-between">
+                                                    <img src="{{ asset($m->imagem) }}" title="{{ $m->nome }}" width="20">
+                                                    {{ $m->nome }}
+                                                    <span class="badge bg-muted rounded-pill float-end">
+                                                        {{ $a->aproveitamento($m->id) }}% de aproveitamento
+                                                    </span>
+                                                </div> --}}
+                                                <span class="text-warning">{{ $a->aproveitamento($m->id) }}% de aproveitamento</span>
+                                                <br>
+                                                <span class="text-light">{{ $a->totalResposta($m->id) }} total de questões</span>
+                                                <br>
+                                                <span class="text-success">{{ $a->acertos($m->id) }} acertos</span>
+                                                <br>
+                                                <span class="text-danger">{{ $a->erros($m->id) }} erros</span>
+                                            </td>
+                                        @endforeach
                                     </tr>
                                 @endforeach
                             </ol>

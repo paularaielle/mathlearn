@@ -9,7 +9,9 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modal-{{ $key }}Label">
-                    Graficos de Desempenho da Turma
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Gráficos de Desempenho da Turma
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>

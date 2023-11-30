@@ -18,11 +18,11 @@
 
                     <x-forms.input type="password" placeholder="Senha" name="password" icon="fa-solid fa-lock"/>
 
-                    <div>
+                    {{-- <div>
                         <a href="#">Esqueci minha senha</a>
-                    </div>
+                    </div> --}}
 
-                    <div class="justify-center">
+                    <div class="justify-center mt-3">
                         <input type="submit" class="btn btn-lg btn-math" value="Entrar" class="btn-block" />
                     </div>
 

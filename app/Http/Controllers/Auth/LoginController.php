@@ -47,7 +47,7 @@ class LoginController extends Controller
                 'password' => ['required', 'confirmed', Password::min(8)],
             ]);
 
-            $data['password'] = Hash::make($request->password);
+            $data['password'] = $request->password;
         }
 
         if (User::where('email', $request->email)->where('id', '<>', $model->id)->count()) {

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Scopes\AtivoScope;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -47,6 +49,28 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::addGlobalScope(new AtivoScope);
+    }
+
+    protected function nickname(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) =>  Str::snake(no_accents(strtolower($value))),
+        );
+    }
+
+    protected function email(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) =>  no_accents(strtolower($value)),
+        );
+    }
+
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            // get: fn (string $value) => $value,
+            set: fn (string $value) =>  Hash::make($value),
+        );
     }
 
     public function isAdmin(): bool
@@ -99,5 +123,10 @@ class User extends Authenticatable
             }
         }
         return '';
+    }
+
+    public function turmas()
+    {
+        return $this->getTurmas();
     }
 }

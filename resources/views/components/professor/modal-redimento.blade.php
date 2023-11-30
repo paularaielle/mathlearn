@@ -1,7 +1,7 @@
 @if ($turma)
     <button type="button" class="btn btn-primary btn-sm bg-math" data-bs-toggle="modal" data-bs-target="#modal-{{ $key }}">
         <i class="fa-solid fa-table"></i>
-        <i class="fa-solid fa-percent"></i> Tabela de Redimentos
+        <i class="fa-solid fa-percent"></i> Redimentos
     </button>
 
     <div class="modal fade" id="modal-{{ $key }}" tabindex="-1" aria-labelledby="modal-{{ $key }}-Label" aria-hidden="true">
@@ -9,6 +9,8 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modal-{{ $key }}Label">
+                    <i class="fa-solid fa-table"></i>
+                    <i class="fa-solid fa-percent"></i>
                     Redimento por Aluno
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

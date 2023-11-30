@@ -12,13 +12,15 @@ use Illuminate\Support\Facades\DB;
 
 class AlunoController extends BaseController
 {
-    protected $title = 'Aluno';
+    protected $title = 'Alunos';
     protected $path = 'aluno';
     protected $router = 'aluno';
 
     public function index()
     {
-        return view($this->index)->with('models', Aluno::paginate());
+        $models = Aluno::orderBy('created_at', 'desc')->paginate();
+
+        return view($this->index)->with('models', $models);
     }
 
     /**
@@ -39,13 +41,14 @@ class AlunoController extends BaseController
         $passwordTemp = $request->password_temp;
 
         $data = [
-            'password' => Hash::make($passwordTemp),
-            'perfil' => 1
+            'password' => $passwordTemp,
+            'perfil' => 1,
+            'pontuacao' => 0,
         ];
 
         DB::beginTransaction();
 
-        if ($model = Professor::create($request->all() + $data)) {
+        if ($model = Aluno::create($request->all() + $data)) {
             $this->saveTurmas($request, $model->id);
             DB::commit();
 

@@ -6,10 +6,16 @@
 
                 @if ($title)
                     <h2 class="mb-3">
-                        {{-- <i class="fa-solid fa-house"></i> --}}
+                        <i class="fa-solid fa-plus"></i>
                         {{ $title }}
                     </h2>
                 @endif
+
+                @include('layouts.partials.breadcrumb', [
+                    'home' => $router . '.index',
+                    'startLabel' => $title,
+                    'endLabel' => 'Criar',
+                ])
 
                 <div class="card shadow">
 

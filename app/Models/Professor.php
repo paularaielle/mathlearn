@@ -12,9 +12,4 @@ class Professor extends \App\Models\User
     {
         static::addGlobalScope(new ProfessorScope);
     }
-
-    public function turmas(): BelongsToMany
-    {
-        return $this->belongsToMany(Turma::class, 'pessoa_turmas', 'user_id', 'turma_id');
-    }
 }

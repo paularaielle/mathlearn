@@ -14,7 +14,9 @@ class TurmaController extends BaseController
 
     public function index()
     {
-        return view($this->index)->with('models', Turma::paginate());
+        $models = Turma::orderBy('created_at', 'desc')->paginate();
+
+        return view($this->index)->with('models', $models);
     }
 
     public function create()

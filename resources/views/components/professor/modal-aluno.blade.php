@@ -9,6 +9,8 @@
             <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="modal-{{ $key }}Label">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <i class="fa-solid fa-chart-pie"></i>
                     {{ $model->nome }}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

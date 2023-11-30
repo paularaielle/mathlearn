@@ -21,7 +21,9 @@ class ProfessorController extends BaseController
 
     public function index()
     {
-        return view($this->index)->with('models', Professor::paginate());
+        $models = Professor::orderBy('created_at', 'desc')->paginate();
+
+        return view($this->index)->with('models', $models);
     }
 
     /**
@@ -43,7 +45,7 @@ class ProfessorController extends BaseController
         $passwordTemp = $request->password_temp;
 
         $data = [
-            'password' => Hash::make($passwordTemp),
+            'password' => $passwordTemp,
             'perfil' => 2
         ];
 

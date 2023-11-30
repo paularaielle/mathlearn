@@ -14,8 +14,8 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <button
-                            class="rounded-circle bg-light border border-2 border-warning p-0"
-                            style="width: 45px; height: 45px; overflow: hidden;"
+                            class="rounded-circle bg-light border border-5 border-warning p-0"
+                            style="width: 50px; height: 50px; overflow: hidden;"
                             data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasExample"
                             aria-controls="offcanvasExample">

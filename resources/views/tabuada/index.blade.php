@@ -7,7 +7,6 @@
                 <h2>
                     <i class="fa-solid fa-calculator"></i>
                     Tabuada
-
                 </h2>
 
                 <nav aria-label="breadcrumb float-end">

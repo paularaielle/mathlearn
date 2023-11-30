@@ -13,11 +13,6 @@ class Aluno extends \App\Models\User
         static::addGlobalScope(new AlunoScope);
     }
 
-    public function turmas(): BelongsToMany
-    {
-        return $this->belongsToMany(Turma::class, 'pessoa_turmas', 'user_id', 'turma_id');
-    }
-
     public function delete() {
 
         if (AlunoResposta::where('aluno_id', $this->id)->count()) {
