@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RemindPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TurmaController;
 use App\Http\Controllers\ProfessorController;
@@ -35,6 +36,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('professor', ProfessorController::class);
         Route::resource('aluno', AlunoController::class);
         Route::resource('operacao', OperacaoController::class);
+        // alterar password
+        Route::get('remind-password/{userId}', [RemindPasswordController::class, 'index'])->name('password.index');
+        Route::post('remind-password/{userId}', [RemindPasswordController::class, 'update'])->name('password.update');
     });
 
     // Professor
@@ -48,5 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tabuada/{operacaoId}/pontuacao/{tabuadaId}', [PontuacaoController::class, 'create'])
             ->name('pontuacao.create');
     });
+
+    
 });
 

@@ -22,7 +22,7 @@
                     placeholder="Nome"
                     label="Nome"
                     name="nome"
-                    value="{{ $model->nome }}" disabled/>
+                    value="{{ $model->nome }}"/>
 
                 <x-forms.input
                     type="text"

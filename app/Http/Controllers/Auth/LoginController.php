@@ -40,6 +40,7 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'email|required',
             'nickname' => 'required|min:6',
+            'nome' => 'required|min:6',
         ]);
 
         if ($request->password) {
@@ -72,6 +73,7 @@ class LoginController extends Controller
         $data = [
             'email' => $request->email,
             'nickname' => $request->nickname,
+            'nome' => $request->nome,
         ] + $data;
 
         if ($model->update($data)) {
