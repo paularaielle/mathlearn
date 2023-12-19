@@ -6,12 +6,12 @@
 
     <div class="container">
         <x-message />
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center text-center">
             <div class="col col-lg-4 col-sm-6 col-md-6" style="margin: 20%">
-                <form method="POST" action="{{ route('authenticate') }}" class="text-center">
+                <form method="POST" action="{{ route('authenticate') }}">
                     @csrf
                     <div class="mb-3">
-                        <img src="{{ asset('img/mathlearn/LOGO.png') }}" width="445px" />
+                        <img src="{{ asset('img/mathlearn/LOGO.png') }}" class="w-100"/>
                     </div>
 
                     <x-forms.input type="text" placeholder="Email/Nickname" name="email" icon="fa-solid fa-user"/>
