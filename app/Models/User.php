@@ -99,9 +99,10 @@ class User extends Authenticatable
             return asset('img/no-avatar.png');
         }
 
-        return $this->isAluno()
-            ? asset($this->avatar)
-            : Storage::url($this->avatar);
+        return asset($this->avatar);
+        // return $this->isAluno()
+        //     ? asset($this->avatar)
+        //     : Storage::url($this->avatar);
     }
 
     public function getTurmas () {
